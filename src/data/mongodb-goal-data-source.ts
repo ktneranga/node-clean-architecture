@@ -5,7 +5,7 @@ import {
 import { GoalDataSource } from "./interfaces/TaskDataSource";
 import { goals } from "./data-sources/mongo-db/schema/Task";
 
-export class MongodbTaskDataSource implements GoalDataSource {
+export class MongodbGoalDataSource implements GoalDataSource {
   async create(goal: GoalInputModel): Promise<GoalResponseModel> {
     const createdGoal = await goals.create({
       title: goal.title,

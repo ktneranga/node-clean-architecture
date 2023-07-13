@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { MongodbTaskDataSource } from "../data/mongodb-task-data-source";
+import { MongodbGoalDataSource } from "../data/mongodb-goal-data-source";
 dotenv.config({ path: ".env" });
 
 const connectDB = async () => {
@@ -11,7 +11,7 @@ const connectDB = async () => {
     console.log(error);
   }
 
-  return new MongodbTaskDataSource();
+  return new MongodbGoalDataSource();
 };
 
 export default connectDB;
