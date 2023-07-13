@@ -4,4 +4,5 @@ export interface GoalRepository {
   createGoal(goal: GoalInputModel): Promise<GoalResponseModel>;
   getGoals(): Promise<GoalResponseModel[]>;
   getGoal(id: String): Promise<GoalResponseModel>;
+  update(id: string, goal: GoalInputModel): Promise<GoalResponseModel>;
 }

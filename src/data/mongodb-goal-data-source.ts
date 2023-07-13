@@ -31,4 +31,13 @@ export class MongodbGoalDataSource implements GoalDataSource {
       title: fetchedGoal?.title,
     };
   }
+
+  async update(id: String, goal: GoalInputModel): Promise<GoalResponseModel> {
+    const updatedGoal = await goals.findByIdAndUpdate(id, goal);
+
+    return {
+      _id: updatedGoal?.id,
+      title: updatedGoal?.title,
+    };
+  }
 }

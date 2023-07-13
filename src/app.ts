@@ -7,6 +7,7 @@ import { CreateGoalUseCaseImpl } from "./domain/use-cases/create-goal-usecase-im
 import GoalsRouter from "./application/routers/goal-router";
 import { GetGoalsUseCaseImpl } from "./domain/use-cases/get-goals-usecase-impl";
 import { GetGoalUseCaseImpl } from "./domain/use-cases/get-goal-usecase-impl";
+import { UpdateGoalUseCaseImpl } from "./domain/use-cases/update-goal-usecase-impl";
 
 const app = express();
 
@@ -20,7 +21,8 @@ app.use(express.urlencoded({ extended: false }));
   const goalsMiddleware = GoalsRouter(
     new CreateGoalUseCaseImpl(new GoalRepositoryImpl(dataSource)),
     new GetGoalsUseCaseImpl(new GoalRepositoryImpl(dataSource)),
-    new GetGoalUseCaseImpl(new GoalRepositoryImpl(dataSource))
+    new GetGoalUseCaseImpl(new GoalRepositoryImpl(dataSource)),
+    new UpdateGoalUseCaseImpl(new GoalRepositoryImpl(dataSource))
   );
   app.use("/goals", goalsMiddleware);
   app.listen(PORT, () => console.log(`server is running on port`, PORT));

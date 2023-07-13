@@ -2,11 +2,13 @@ import { Router, Request, Response } from "express";
 import { CreateGoalUseCase } from "../../domain/interfaces/use-cases/create-goal-usecase";
 import { GetGoalsUseCase } from "../../domain/interfaces/use-cases/get-goals-usecase";
 import { GetGoalUseCase } from "../../domain/interfaces/use-cases/get-goal-usecase";
+import { updateGoalUseCase } from "../../domain/interfaces/use-cases/update-goal-usecase";
 
 export default function GoalsRouter(
   createGoalUseCase: CreateGoalUseCase,
   getGoalsUseCase: GetGoalsUseCase,
-  getGoalUseCase: GetGoalUseCase
+  getGoalUseCase: GetGoalUseCase,
+  updateGoalUseCase: updateGoalUseCase
 ) {
   const router = Router();
 
@@ -49,7 +51,29 @@ export default function GoalsRouter(
         status: true,
         data: result,
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        message: "Error fetching data",
+      });
+    }
+  });
+
+  router.put("/update/:id", async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const payload = req.body;
+      const result = await updateGoalUseCase.execute(id, payload);
+      res.status(200).json({
+        status: true,
+        data: {
+          result,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ message: "Error updating data" });
+    }
   });
 
   return router;

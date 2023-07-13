@@ -20,4 +20,8 @@ export class GoalRepositoryImpl implements GoalRepository {
   async getGoal(id: String): Promise<GoalResponseModel> {
     return await this.goalDataSource.getOne(id);
   }
+
+  async update(id: string, goal: GoalInputModel): Promise<GoalResponseModel> {
+    return await this.goalDataSource.update(id, goal);
+  }
 }
