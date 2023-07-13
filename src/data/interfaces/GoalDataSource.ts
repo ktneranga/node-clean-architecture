@@ -5,4 +5,6 @@ import {
 
 export interface GoalDataSource {
   create(goal: GoalInputModel): Promise<GoalResponseModel>;
+  getAll(): Promise<GoalResponseModel[]>;
+  getOne(id: String): Promise<GoalResponseModel>;
 }

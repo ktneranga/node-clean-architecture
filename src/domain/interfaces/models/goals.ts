@@ -4,5 +4,5 @@ export interface GoalInputModel {
 
 export interface GoalResponseModel {
   _id: String;
-  title: String;
+  title: String | undefined;
 }
